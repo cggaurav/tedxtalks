@@ -8,9 +8,39 @@ blockquote:before, blockquote:after, q:before, q:after {content: ''; content: no
 table {border-collapse: collapse; border-spacing: 0;}
 
 h1{
-	padding: 50px;
-	color : #ff2b06;
-	font-size: 60px;
+	padding-bottom: 10px;
+	font-size: 50px;
 	font-family: Helvetica;
 	font-weight: bold;
+}
+form
+{
+	padding:20px;
+}
+
+.search-query {
+  padding-right: 14px;
+  padding-right: 4px \9;
+  padding-left: 14px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 14px;
+     -moz-border-radius: 14px;
+          border-radius: 14px;
+}
+
+input[type="search"] {
+	display: inline-block;
+	height: 18px;
+	padding: 4px;
+	margin-bottom: 9px;
+	font-size: 13px;
+	line-height: 18px;
+	color: #555555;
+	-webkit-box-sizing: content-box;
+	 -moz-box-sizing: content-box;
+	      box-sizing: content-box;
+	-webkit-appearance: textfield;
 }
