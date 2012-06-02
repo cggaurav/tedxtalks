@@ -1,8 +1,40 @@
+<script>
+var xTriggered = 0;
+$("#target").keypress(function(event) {
+    if ( event.which == 13 ){
+      event.preventDefault();
+    }
+    xTriggered++;
+    var msg = "Handler for .keypress() called " + xTriggered + " time(s).";
+    console.log( msg );
+    console.log( event );
+});
+
+$("#other").click(function() {
+  $("#target").keypress();
+});
+</script>
+
 <div id="wrapper">
-	<h1>TEDx Instant</h1>
-  <div id="content">
-  	<iframe id="ytplayer" type="text/html" width="640" height="360"
-  	src="http://www.youtube.com/embed/Zhawgd0REhA"
-  	frameborder="0" allowfullscreen>
-  </div>
+	<header align="center">
+		<h1>TEDx Instant</h1>
+	</header>
+  	<div id="content" align="center">
+  		<form>
+  		  <fieldset>
+  		    <input id="target" type="text" value="" />
+  		  </fieldset>
+  		</form>
+      <div class="tedxinstant">
+        <div class="title">
+
+        </div>
+        <div class="play">
+  	  	  
+        </div>
+        <div class="description">
+
+        </div>
+      </div>
+  	</div>
 </div>

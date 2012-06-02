@@ -7,6 +7,10 @@ blockquote, q {quotes: none;}
 blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
 table {border-collapse: collapse; border-spacing: 0;}
 
-/* site-wide */
-
-/* page-specific */
+h1{
+	padding: 50px;
+	color : #ff2b06;
+	font-size: 60px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
