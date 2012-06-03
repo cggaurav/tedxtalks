@@ -17,10 +17,10 @@ jQuery(document).ready(function($) {
       var description = youtube[0].media$group.media$description.$t.split("About TEDx")[0];
       description = description.split("In the spirit of ideas worth spreading")[0];
       var videoId = youtube[0].id.$t.replace("tag:youtube.com,2008:video:","");
-      console.log(youtube);
-      console.log(title);
-      console.log(description);
-      console.log(videoId);
+      //console.log(youtube);
+      //console.log(title);
+      //console.log(description);
+      //console.log(videoId);
       var video = ("http://www.youtube.com/v/" + videoId +"&amp;enablejsapi=1&amp;autoplay=1&amp;egm=0&amp;loop=0&amp;fs=1&amp;hd=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=3&amp;cc_load_policy=1");
       $('#title').html(jQuery('<h2 />').html(title));
       $('#description').html(jQuery('<p />').html(description));
@@ -38,9 +38,6 @@ jQuery(document).ready(function($) {
 </div>
 <div class="description" id="play">
   <object type="application/x-shockwave-flash" id="ytPlayer" allowfullscreen="true" data="http://www.youtube.com/v/zf2F0c9R4Mc&amp;enablejsapi=1&amp;autoplay=1&amp;egm=0&amp;loop=0&amp;fs=1&amp;hd=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=3&amp;cc_load_policy=1" width="720" height="405"></object>
-      <!-- <iframe id="ytplayer" type="text/html" width="640" height="360"
-      src="http://www.youtube.com/embed/Zhawgd0REhA"
-      frameborder="0" allowfullscreen> -->
 </div>
 <div class="description" id="description">
   <p>This video highlights the progress TEDx has made over the past 7 months and was shown at TEDIndia in Mysore, India on November 4, 2009.</p>

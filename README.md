@@ -6,5 +6,6 @@
 * Docs format: [TomDoc](http://tomdoc.org/)
 
 ## ToDO
+* Fix the linker.js issue, with links without http or www
 * Fix the asynchronous AJAX
 * A notepad for taking notes while watching the talk
