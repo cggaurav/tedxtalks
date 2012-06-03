@@ -8,6 +8,7 @@
     <meta name="description" content="TEDxtalks + Youtube + Google Instant" />
     <link rel="stylesheet" href="/css/style.css" />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="/js/lettering.js"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-xxxxxxx-x']);
@@ -21,6 +22,13 @@
     </script>
   </head>
   </body>
-    <%= yield %>
+    <div id="logo" align="center">
+      <h1>TEDx Instant</h1>
+    </div>
+      <%= yield %>
+    </div>
+    <footer>
+      <p>Made with love, by <a href="http://twitter.com/cggaurav">cggaurav</a></p>
+    </footer>
   </body>
 </html>
