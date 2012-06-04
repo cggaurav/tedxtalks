@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
         var video = ("http://www.youtube.com/v/" + videoId +"&amp;enablejsapi=1&amp;autoplay=1&amp;egm=0&amp;loop=0&amp;fs=1&amp;hd=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=3&amp;cc_load_policy=1");
         $('#title').html(jQuery('<h2 />').html(title));
         $('#description').html(jQuery('<p />').html(linkify(description).replace(/(^|\s)(@\w+)/gm, '$1<a href="http://twitter.com/$2">$2</a>')));
-        $('#play').html(jQuery('<object />').attr('data',video).attr('type',"application/x-shockwave-flash").attr('width','700').attr('height','38  0'));
+        $('#play').html(jQuery('<object />').attr('data',video).attr('type',"application/x-shockwave-flash").attr('width','700').attr('height','380'));
     });
 
   })
