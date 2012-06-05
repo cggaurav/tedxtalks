@@ -55,13 +55,8 @@ function loadPlayer() {
 function onYouTubePlayerReady(playerId){
   ytplayer=document.getElementById("ytPlayer");
   ytplayer.addEventListener("onStateChange","onPlayerStateChange");
-  // var searchBox=$('#searchBox');searchBox.keyup(doInstantSearch);
-  // $(document.documentElement).keydown(onKeyDown);
-  // $('#buttonControl').click(playPause);
-  // $('#linkUrl').click(function(e){
-  //   $(this).select();});
-  //   onBodyLoad();doInstantSearch();
-  }
+
+}
 
 function onPlayerStateChange(newState){
   playerState=newState;
@@ -72,46 +67,81 @@ function onPlayerStateChange(newState){
   }
 }
 
-function loadPlaylists(playlist,titles){
+function loadPlaylists(playlist,titles,descriptions){
 
   for(var i=1;i<=6;i++)
   {
     var id="#" + i;
+    var idid = i*10+i;
     var thumbnail = getThumbnail(playlist[i-1],"small");
-    console.log(id);
+    console.log(idid);
     console.log(thumbnail);
-    $(id).html(jQuery('<td />').html(titles[i-1].substring(0,40) + "..." + '<img src="' + thumbnail + '">'));
+    $(id).html('<td id="' + idid + '" title ="' + titles[i-1] + '" description="' + descriptions[i-1] + 'ytID="' + playlist[i-1] + '">' + '"titles[i-1].substring(0,40) + "..." + '<img src="' + thumbnail + '">');
   }
 }
 
-jQuery(document).ready(function($) {
-  
-  //twitter links
-  $('input#target').on('keydown', function() { 
-    var query = $(this).val();
-    console.log($(this).val()); 
-    $.ajax({
-      type: "GET",
-      url: "https://gdata.youtube.com/feeds/api/videos",
-      data: { alt: "json", q: query, author: 'tedxtalks', v : '2'}
-    }).done(function(message) {
-      if(message.feed.title.$t.split('YouTube Videos matching query: ')[1]==query){
-        youtube = message.feed.entry;
+jQuery(document).ready(function($) 
+{
+    $('input#target').on('keydown', function() { 
+      var query = $(this).val();
+      console.log($(this).val()); 
+      $.ajax({
+        type: "GET",
+        url: "https://gdata.youtube.com/feeds/api/videos",
+        data: { alt: "json", q: query, author: 'tedxtalks', v : '2'},
 
-        var playlist = [];
-        var titles = [];
-        var descriptions = [];
-        for(var i=0;i<10;i++){
-          titles.push(youtube[i].title.$t);
-          playlist.push(youtube[i].media$group.yt$videoid.$t);
-          descriptions.push(youtube[i].media$group.media$description.$t.split("About TEDx")[0].split("In the spirit of ideas worth spreading")[0]);
-        }
-        loadVideoID(playlist[0],titles[0],descriptions[0]);
-        loadPlaylists(playlist,titles);
+        success: function(message)
+        {
+          if(message.feed.title.$t.split('YouTube Videos matching query: ')[1]==query)
+          {
+            youtube = message.feed.entry;
+            var playlist = [];
+            var titles = [];
+            var descriptions = [];
+            for(var i=0;i<10;i++)
+            {
+              titles.push(youtube[i].title.$t);
+              playlist.push(youtube[i].media$group.yt$videoid.$t);
+              descriptions.push(youtube[i].media$group.media$description.$t.split("About TEDx")[0].split("In the spirit of ideas worth spreading")[0]);
+            }
+            loadVideoID(playlist[0],titles[0],descriptions[0]);
+            loadPlaylists(playlist,titles,descriptions);
+          }
       }
     });
+  });
 
-  })
+  $('#1').on('click', function() { 
+    var title = $("#11").attr('title'); 
+    var description = $("#11").attr('description'); 
+    var videoId = $("#11").attr('ytID');
+    loadVideoID(videoId,title,description); });
+  $('#2').on('click', function() { 
+    var title = $("#22").attr('title'); 
+    var description = $("#22").attr('description'); 
+    var videoId = $("#22").attr('ytID');
+    loadVideoID(videoId,title,description); });
+  $('#3').on('click', function() { 
+    var title = $("#33").attr('title'); 
+    var description = $("#33").attr('description'); 
+    var videoId = $("#33").attr('ytID');
+    loadVideoID(videoId,title,description); });
+  $('#4').on('click', function() { 
+    var title = $("#44").attr('title'); 
+    var description = $("#44").attr('description'); 
+    var videoId = $("#44").attr('ytID');
+    loadVideoID(videoId,title,description); });
+  $('#5').on('click', function() { 
+    var title = $("#55").attr('title'); 
+    var description = $("#55").attr('description'); 
+    var videoId = $("#55").attr('ytID');
+    loadVideoID(videoId,title,description); });
+  $('#6').on('click', function() { 
+    var title = $("#66").attr('title'); 
+    var description = $("#66").attr('description'); 
+    var videoId = $("#66").attr('ytID');
+    loadVideoID(videoId,title,description); });
+
 });
 
 google.setOnLoadCallback(loadPlayer);
