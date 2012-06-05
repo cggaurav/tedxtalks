@@ -1,50 +1,33 @@
-
-
-<script>
-jQuery(document).ready(function($) {
-
-  // letting.js
-  $("#logo h1").lettering('words');
-
-  //twitter links
-
-
-  $('input#target').on('keydown', function() { 
-    var query = $(this).val();
-    console.log($(this).val()); 
-    $.ajax({
-      type: "GET",
-      url: "https://gdata.youtube.com/feeds/api/videos",
-      data: { alt: "json", q: query, author: 'tedxtalks', v : '2'}
-    }).done(function( message) {
-
-        youtube = message.feed.entry;
-        var title = youtube[0].title.$t;
-        var description = youtube[0].media$group.media$description.$t.split("About TEDx")[0];
-        description = description.split("In the spirit of ideas worth spreading")[0];
-        var videoId = youtube[0].media$group.yt$videoid.$t;
-        console.log(youtube);
-        //console.log(title);
-        //console.log(description);
-        console.log(videoId);
-        var video = ("http://www.youtube.com/v/" + videoId +"&amp;enablejsapi=1&amp;autoplay=1&amp;egm=0&amp;loop=0&amp;fs=1&amp;hd=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=3&amp;cc_load_policy=1");
-        $('#title').html(jQuery('<h2 />').html(title));
-        $('#description').html(jQuery('<p />').html(linkify(description).replace(/(^|\s)(@\w+)/gm, '$1<a href="http://twitter.com/$2">$2</a>')));
-        $('#play').html(jQuery('<object />').attr('data',video).attr('type',"application/x-shockwave-flash").attr('width','700').attr('height','380'));
-    });
-
-  })
-});
-</script>
 <div align="center">
   <form><input id="target" class="search-query" type="text" value="So, what do you want to learn about today?" onFocus="this.value=''" /></form>
 </div>
+
 <div class="description" id="title">
     <h2>TEDx: In 7 Months...</h2>
 </div>
-<div class="description" id="play">
-  <object type="application/x-shockwave-flash" id="ytPlayer" allowfullscreen="true" data="http://www.youtube.com/v/zf2F0c9R4Mc&amp;enablejsapi=1&amp;autoplay=1&amp;egm=0&amp;loop=0&amp;fs=1&amp;hd=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=3&amp;cc_load_policy=1" width="700" height="380"></object>
+
+<div id="video" class="description">
+  <!-- This below div is updated through loadvideo -->
+  <span id="left">
+    <table>
+      <tr>I</tr>
+      <tr>Love</tr>
+      <tr>Gaurav</tr>
+    </table>
+  </span>
+  <span id="play" class="description"></span>
+  <span id="right">
+    <table>
+      <tr>Gaurav</tr>
+      <tr>loves</tr>
+      <tr>You</tr>
+    </table>
+  </span>
 </div>
+<!-- <div class="description" id="play">
+  <object type="application/x-shockwave-flash" id="ytPlayer" allowfullscreen="true" data="http://www.youtube.com/v/zf2F0c9R4Mc&amp;enablejsapi=1&amp;autoplay=1&amp;egm=0&amp;loop=0&amp;fs=1&amp;hd=0&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=3&amp;cc_load_policy=1" width="700" height="380"></object>
+</div> -->
+
 <div class="description" id="description">
   <p>This video highlights the progress TEDx has made over the past 7 months and was shown at TEDIndia in Mysore, India on November 4, 2009.</p>
 </div>

@@ -3,7 +3,7 @@ h1{
 	margin: 1px;
 	font-weight: bold;
 	font-family: Helvetica, "MS Trebuchet", sans-serif;
-	font-size: 70px;
+	font-size: 60px;
 	color: #ff2b06;
 	font-style: normal;
 	letter-spacing: -0.075em;
@@ -23,9 +23,9 @@ h1 .word2
 
 h2{
 	text-align: center;
-	padding: 5px;
+	padding: 1px;
 	font-family: Helvetica, "MS Trebuchet", sans-serif;
-	font-size: 20px;
+	font-size: 15px;
 	font-style: normal;
 }
 
@@ -41,6 +41,7 @@ p {
 	width: 50%;
 	height: 25px;
   	padding: 4px 9px;
+  	text-align: center;
   	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;  
   	font-size: 13px;
   	font-weight: normal;
