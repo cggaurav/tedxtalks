@@ -76,7 +76,7 @@ function loadPlaylists(playlist,titles,descriptions){
     var thumbnail = getThumbnail(playlist[i-1],"small");
     console.log(idid);
     console.log(thumbnail);
-    $(id).html('<td id="' + idid + '" title ="' + titles[i-1] + '" description="' + descriptions[i-1] + 'ytID="' + playlist[i-1] + '">' + '"titles[i-1].substring(0,40) + "..." + '<img src="' + thumbnail + '">');
+    $(id).html('<td id="' + idid + '" title ="' + titles[i-1] + '" description="' + descriptions[i-1] + 'ytID="' + playlist[i-1] + '">' + titles[i-1].split("-")[1].substring(0,30) + ".." + '<img src="' + thumbnail + '">');
   }
 }
 
