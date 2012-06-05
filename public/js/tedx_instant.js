@@ -74,9 +74,8 @@ function loadPlaylists(playlist,titles,descriptions){
     var id="#" + i;
     var idid = i*10+i;
     var thumbnail = getThumbnail(playlist[i-1],"small");
-    console.log(idid);
-    console.log(thumbnail);
-    $(id).html('<td id="' + idid + '" title ="' + titles[i-1] + '" description="' + descriptions[i-1] + 'ytID="' + playlist[i-1] + '">' + titles[i-1].split("-")[1].substring(0,30) + ".." + '<img src="' + thumbnail + '">');
+    console.log(descriptions[i-1]);
+    $(id).html('<td id="' + idid + '" title ="' + titles[i-1].replace(/\"/g,"'") + '" description="' + descriptions[i-1].replace(/\"/g,"'") + '" ytID="' + playlist[i-1] + '">' + titles[i-1].split("-")[1].substring(0,20) + ".." + '<img src="' + thumbnail + '">');
   }
 }
 
