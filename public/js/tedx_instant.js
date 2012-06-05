@@ -4,26 +4,28 @@ function updateHTML(elmId, value) {
 }
 
 // Loads the selected video into the player.
-function loadVideoID(videoID) {
+function loadVideoID(videoID,title,description) {
   if(ytplayer) {
     ytplayer.loadVideoById(videoID);
+    $('#title').html(jQuery('<h2 />').html(title));
+    $('#description').html(jQuery('<p />').html(linkify(description).replace(/(^|\s)(@\w+)/gm, '$1<a href="http://twitter.com/$2">$2</a>')));
   }
 }
 
 function loadVideoPL(playlist)
 {
   if(ytplayer){
-    ytplayer.loadVideobyId(playlist[Math.floor(Math.random()*playlist.length())])
+    ytplayer.loadVideobyId(playlist[Math.floor(Math.random()*6)])
   }
 }
 
-function getthumbnail(videoId,size)
+function getThumbnail(videoId,size)
 {
   if(size == "small"){
-    return "http://img.youtube.com/vi/"+vid+"/2.jpg";
+    return "http://img.youtube.com/vi/"+videoId+"/2.jpg";
   }
   else {
-    return "http://img.youtube.com/vi/"+vid+"/0.jpg";
+    return "http://img.youtube.com/vi/"+videoId+"/0.jpg";
   }
 }
 
@@ -66,18 +68,20 @@ function onPlayerStateChange(newState){
   console.log(playerState);
   if(playerState == 0)
   { 
-    loadVideoPL(playlist);
+    // loadVideoPL(playlist);
   }
 }
 
-function loadTitle(title){
+function loadPlaylists(playlist,titles){
 
-  $('#title').html(jQuery('<h2 />').html(title));
-}
-
-function loadDescription(description){
-
-  $('#description').html(jQuery('<p />').html(linkify(description).replace(/(^|\s)(@\w+)/gm, '$1<a href="http://twitter.com/$2">$2</a>')));
+  for(var i=1;i<=6;i++)
+  {
+    var id="#" + i;
+    var thumbnail = getThumbnail(playlist[i-1],"small");
+    console.log(id);
+    console.log(thumbnail);
+    $(id).html(jQuery('<td />').html(titles[i-1].substring(0,40) + "..." + '<img src="' + thumbnail + '">'));
+  }
 }
 
 jQuery(document).ready(function($) {
@@ -91,29 +95,20 @@ jQuery(document).ready(function($) {
       url: "https://gdata.youtube.com/feeds/api/videos",
       data: { alt: "json", q: query, author: 'tedxtalks', v : '2'}
     }).done(function(message) {
-
+      if(message.feed.title.$t.split('YouTube Videos matching query: ')[1]==query){
         youtube = message.feed.entry;
-        var title = youtube[0].title.$t;
 
-        var description = youtube[0].media$group.media$description.$t.split("About TEDx")[0];
-        description = description.split("In the spirit of ideas worth spreading")[0];
-        
-        var videoId = youtube[0].media$group.yt$videoid.$t;
-
-        var playlist = []
-        for(var i=0;i<25;i++){
+        var playlist = [];
+        var titles = [];
+        var descriptions = [];
+        for(var i=0;i<10;i++){
+          titles.push(youtube[i].title.$t);
           playlist.push(youtube[i].media$group.yt$videoid.$t);
+          descriptions.push(youtube[i].media$group.media$description.$t.split("About TEDx")[0].split("In the spirit of ideas worth spreading")[0]);
         }
-        
-        console.log(youtube);
-        console.log(title);
-        console.log(description);
-        console.log(videoId);
-        console.log(playlist);              
-        
-        loadTitle(title);
-        loadDescription(description);
-        loadVideoID(videoId);
+        loadVideoID(playlist[0],titles[0],descriptions[0]);
+        loadPlaylists(playlist,titles);
+      }
     });
 
   })
