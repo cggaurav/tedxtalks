@@ -39,9 +39,9 @@ tr{
 	margin: 5px;
 }
 td:hover,td:active{
-	border-color: #cfcfcf;
+	border-color: #ff2b06;
 	border-style: solid;
-	border-width: 1.5px;
+	border-width: 1.8px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
