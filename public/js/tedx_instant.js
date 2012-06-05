@@ -80,7 +80,7 @@
             type: "GET",
             url: "https://gdata.youtube.com/feeds/api/videos",
             data: { alt: "json", q: query, author: 'tedxtalks', v : '2'}
-          }).done(function( message) {
+          }).done(function(message) {
 
               youtube = message.feed.entry;
               var title = youtube[0].title.$t;
