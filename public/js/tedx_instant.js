@@ -83,7 +83,7 @@ jQuery(document).ready(function($)
 {
     $('input#target').on('keydown', function(key) { 
       //console.log(key);
-      if(key.keyCode==13 or key.keyCode==91 or ){ return false;}
+      if(key.keyCode==13 || key.keyCode==91){ return false;}
       var query = $(this).val();
       $.ajax({
         type: "GET",
