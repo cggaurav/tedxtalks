@@ -60,7 +60,7 @@ function onYouTubePlayerReady(playerId){
 
 function onPlayerStateChange(newState){
   playerState=newState;
-  console.log(playerState);
+  //console.log(playerState);
   if(playerState == 0)
   { 
     // loadVideoPL(playlist);
@@ -74,41 +74,44 @@ function loadPlaylists(playlist,titles,descriptions){
     var id="#" + i;
     var idid = i*10+i;
     var thumbnail = getThumbnail(playlist[i-1],"small");
-    console.log(descriptions[i-1]);
-    $(id).html('<td id="' + idid + '" title ="' + titles[i-1].replace(/\"/g,"'") + '" description="' + descriptions[i-1].replace(/\"/g,"'") + '" ytID="' + playlist[i-1] + '">' + titles[i-1].split("-")[1].substring(0,20) + ".." + '<img src="' + thumbnail + '">');
+    //console.log(descriptions[i-1]);
+    $(id).html('<td id="' + idid + '" title ="' + titles[i-1].replace(/\"/g,"'") + '" description="' + descriptions[i-1].replace(/\"/g,"'") + '" ytID="' + playlist[i-1] + '"><div class="title">' + titles[i-1].substr(0,55) + ".." + '</div><div class="img"><img src="' + thumbnail + '"></div></td>');
   }
 }
 
 jQuery(document).ready(function($) 
 {
-    $('input#target').on('keydown', function() { 
+    $('input#target').on('keydown', function(key) { 
+      //console.log(key);
+      if(key.keyCode==13 or key.keyCode==91 or ){ return false;}
       var query = $(this).val();
-      console.log($(this).val()); 
       $.ajax({
         type: "GET",
+        dataType: 'json',
         url: "https://gdata.youtube.com/feeds/api/videos",
         data: { alt: "json", q: query, author: 'tedxtalks', v : '2'},
 
         success: function(message)
         {
-          if(message.feed.title.$t.split('YouTube Videos matching query: ')[1]==query)
-          {
-            youtube = message.feed.entry;
-            var playlist = [];
-            var titles = [];
-            var descriptions = [];
-            for(var i=0;i<10;i++)
+
+            if(message.feed.title.$t.split("YouTube Videos matching query: ")[1] == query)
             {
-              titles.push(youtube[i].title.$t);
-              playlist.push(youtube[i].media$group.yt$videoid.$t);
-              descriptions.push(youtube[i].media$group.media$description.$t.split("About TEDx")[0].split("In the spirit of ideas worth spreading")[0]);
+              var youtube = message.feed.entry;
+              var playlist = [];
+              var titles = [];
+              var descriptions = [];
+              for(var i=0;i<=7;i++)
+              {
+                titles.push(youtube[i].title.$t);
+                playlist.push(youtube[i].media$group.yt$videoid.$t);
+                descriptions.push(youtube[i].media$group.media$description.$t.split("About TEDx")[0].split("In the spirit of ideas worth spreading")[0]);
+              }
+              loadVideoID(playlist[0],titles[0],descriptions[0]);
+              loadPlaylists(playlist.slice(1,7),titles.slice(1,7),descriptions.slice(1,7));
             }
-            loadVideoID(playlist[0],titles[0],descriptions[0]);
-            loadPlaylists(playlist,titles,descriptions);
-          }
       }
-    });
   });
+});
 
   $('#1').on('click', function() { 
     var title = $("#11").attr('title'); 

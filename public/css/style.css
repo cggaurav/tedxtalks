@@ -21,6 +21,16 @@ h1 .word2
 	text-align:center;
 }
 
+.title{
+	width: 200px;
+	height: 30px;
+	padding-bottom: 3px;
+	margin: 1px;
+}
+.img{
+	padding: 0 25px;
+	width: 150px;
+}
 h2{
 	text-align: center;
 	padding: 1px;
@@ -31,12 +41,12 @@ h2{
 
 td {
 	font-size: 13px;
+	text-align: center;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	padding-bottom: 8px;
+	padding-bottom: 5px;
 }
 tr{
 	padding: 5px;
-	margin: 5px;
 }
 td:hover,td:active{
 	border-color: #ff2b06;
@@ -45,14 +55,9 @@ td:hover,td:active{
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	cursor: pointer;
 	  
 } 
-img{
-	padding: 4px;
-}
-img.border{
-	border: 2px solid #efefef;
-}
 p {
   margin: 0 0 9px;
   text-align: center;
