@@ -81,6 +81,7 @@ function loadPlaylists(playlist,titles,descriptions){
 
 jQuery(document).ready(function($) 
 {
+    // SEE https://developers.google.com/youtube/v3/docs/videos/list
     $('input#target').on('keydown', function(key) { 
       //console.log(key);
       if(key.keyCode==13 || key.keyCode==91){ return false;}
@@ -88,8 +89,8 @@ jQuery(document).ready(function($)
       $.ajax({
         type: "GET",
         dataType: 'json',
-        url: "https://gdata.youtube.com/feeds/api/videos",
-        data: { alt: "json", q: query, author: 'tedxtalks', v : '2'},
+        url: "https://www.googleapis.com/youtube/v3/search",
+        data: { alt: "json", q: query, author: 'tedxtalks', v : '2', part: 'snippet' },
 
         success: function(message)
         {
