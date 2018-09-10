@@ -1,7 +1,8 @@
-# TEDx Instant at http://talks.tk
+# TEDx Instant
+
+A simple (yet better) search that reduces the time between discovery and consumption of TEDxTalks. The number of TEDx talks are growing by the day, and this is an effort to make them discoverable instantly!
 
 ## About
-* A simple (yet better) search that reduces the time between discovery and consumption of TEDxTalks. The number of TEDx talks are growing by the day, and this is an effort to make them discoverable instantly!
 * Stack: JQuery,Heroku,CSS
 * Docs format: [TomDoc](http://tomdoc.org/)
 
